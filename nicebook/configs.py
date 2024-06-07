@@ -316,7 +316,7 @@ class Document:
         self.body = Body(**kwargs.get("body", {}))
         self.code = Code(**kwargs.get("code", {}))
         self.title_page = TitlePage(**kwargs.get("title_page", {}))
-        self.header = HeaderFooter(**kwargs.get("header", {"all": {"text": metadata.title, "space_before": 0.5}}))
+        self.header = HeaderFooter(**kwargs.get("header", {"all": {"text": "${{title}}", "space_before": 0.5}}))
         self.footer = HeaderFooter(**kwargs.get("footer", {"all": {"text": "${{page_number}}", "space_after": 0.5, "alignment": "right"}}))
         self.start_page_count_at_page = kwargs.get("start_page_count_at_page", 1)
         self.start_page_count_on_first_header = kwargs.get("start_page_count_on_first_header", True)

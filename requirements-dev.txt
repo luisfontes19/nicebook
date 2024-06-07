@@ -1,1 +1,4 @@
 pdf2image
+setuptools
+build
+twine

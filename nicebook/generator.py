@@ -1,5 +1,6 @@
 #pip install marko reportlab
 import logging
+import os
 import re
 import tempfile
 from html import escape
@@ -122,7 +123,9 @@ class Generator:
 
     def __process_file(self, file:str):
         self.reference_manager.current_file = file
-        f = open(file)
+
+
+        f = open(os.path.normpath(os.path.join(os.getcwd(), file)))
         md = f.read()
         f.close()
 
@@ -443,6 +446,9 @@ class Generator:
             # TODO support checked checkboxes :)
             # If first item has a checkbox, show a checkbox in all
             children = list_item.children
+            if len(children) == 0:
+                continue
+
             if hasattr(children[0], "checked"):
                 start = "square"
                 color = colors.HexColor("#DDDDDD")

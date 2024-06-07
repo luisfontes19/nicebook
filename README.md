@@ -29,4 +29,16 @@ Also, the configurations are assumed as safe so they are not escaped either.
 ```bash
 python -m unittest
 python -m nicebook.cli -i tests/test_files/complex.md -o tmp/output.pdf
-``````
+```
+
+
+### Build
+
+```bash
+python setup.py sdist bdist_wheel
+pip install -e .
+# Make sure it works
+...
+python -m build
+twine upload dist/*
+```

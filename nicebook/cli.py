@@ -39,13 +39,17 @@ def main():
         parser.print_help()
         sys.exit(1)
 
+    # fix for when receiving a multi line string from piped input
+
+
     files = []
 
-    for i in input:
-        if os.path.isdir(i):
-            files.extend(glob.glob(i + '/**/*.md', recursive=True))
-        else:
-            files.append(i)
+    for item in input:
+        for i in item.split("\n"):
+            if os.path.isdir(i):
+                files.extend(glob.glob(i + '/**/*.md', recursive=True))
+            else:
+                files.append(i)
 
 
     output_file = args.output
