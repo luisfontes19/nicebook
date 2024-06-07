@@ -31,6 +31,9 @@ class RichParagraph():
         text = self.sanitize(text)
         style = self.__get_styler().configs.document.links
 
+        if self.styler.configs.document.links.underline:
+            text = f"<u>{text}</u>"
+
         if "://" in link:
             self.text = self.text + f"<a href='{link}' color='{style.color}'>{text}</a>"
         else:
