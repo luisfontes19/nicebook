@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 # Package metadata
 NAME = 'nicebook'
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 DESCRIPTION = 'Simple library to generate pdf books from markdown files'
 URL = 'https://github.com/luisfontes19/nicebook'
 AUTHOR = 'Luis Fontes'
