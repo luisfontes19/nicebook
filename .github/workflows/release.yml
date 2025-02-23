@@ -6,16 +6,61 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: New Release
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version to bump (major, minor, patch)"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install bump2version
+        run: pip install bump2version
+
+      - name: Bump version
+        run: |
+          bump2version ${{ github.event.inputs.version_type }}
+          NEW_VERSION=$(grep -oP "(?<=current_version = )[\d\.]+" .bumpversion.cfg)
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin master --tags
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.NEW_VERSION }}
+          name: Release v${{ env.NEW_VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release-build:
     runs-on: ubuntu-latest
 
