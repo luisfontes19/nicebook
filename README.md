@@ -14,7 +14,7 @@ If you want to generate a default config so that you can customize it, you can u
 nicebook -g
 ```
 
-This will generate a file nicebook.yml that you can then tweak for your needs
+This will generate a file `nicebook.yml` that you can then tweak for your needs
 
 ## Security implications
 
@@ -30,7 +30,6 @@ Also, the configurations are assumed as safe so they are not escaped either.
 python -m unittest
 python -m nicebook.cli -i tests/test_files/complex.md -o tmp/output.pdf
 ```
-
 
 ### Build
 

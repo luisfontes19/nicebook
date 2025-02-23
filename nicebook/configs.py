@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 from typing import Literal
 
@@ -114,11 +115,13 @@ class CodeHighlight():
     theme: str
     line_numbers: bool
     do_highlight: bool
+    font: str
 
     def __init__(self, **kwargs):
         self.theme = kwargs.get("theme", "monokai")
         self.line_numbers = kwargs.get("line_numbers", True)
         self.do_highlight = kwargs.get("do_highlight", True)
+        self.font = kwargs.get("font", "DejaVu Sans Mono")
 
 class Code():
     background_color:str
@@ -462,6 +465,8 @@ class Configs:
 """
 
         final_content = header + content
+
+        os.makedirs(os.path.dirname(path), exist_ok=True)
 
         with open(path, "w") as f:
             f.write(final_content)

@@ -1,4 +1,3 @@
-import os
 
 from setuptools import find_packages, setup
 
@@ -17,6 +16,7 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
+    long_description=open("README.md").read(),
     url=URL,
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
@@ -28,6 +28,7 @@ setup(
         "reportlab",
         "pygments",
         "requests",
+        "pyyaml",
     ],
     entry_points={
         'console_scripts': [

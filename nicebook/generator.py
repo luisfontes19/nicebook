@@ -13,14 +13,12 @@ from pygments.formatters import ImageFormatter
 from pygments.lexers import get_lexer_by_name
 from reportlab.lib.styles import StyleSheet1
 from reportlab.lib.units import inch
-from reportlab.pdfgen import canvas
-from reportlab.platypus import (HRFlowable, KeepTogether, ListFlowable,
+from reportlab.platypus import (HRFlowable, ListFlowable,
                                 ListItem, PageBreak, Paragraph, Spacer, Table,
                                 XPreformatted)
 from reportlab.platypus.tableofcontents import TableOfContents
 
 from nicebook.components.better_image import BetterImage
-from nicebook.components.checkbox import Checkbox
 from nicebook.components.rich_paragraph import RichParagraph
 from nicebook.configs import Configs, Heading
 from nicebook.nicebook_doc_template import NiceBookTemplate
@@ -398,7 +396,7 @@ class Generator:
                     # Using a KeepTogether break the execution inside the table cell,
                     # But we can send an array of flowables to the cell content
                     # so we just get the flowables from the KeepTogether instance
-                    cell_content = self.__process_paragraph_new(e)._content
+                    cell_content = self.__process_paragraph_new(e)
                 else:
                     c = cell_content[0]
                     if c.get_type() == "RawText":
@@ -496,7 +494,8 @@ class Generator:
                 dpi=600, scale=1,
                 line_numbers=conf.line_numbers,
                 line_number_bg=None,
-                font_size=self.configs.document.body.font_size
+                font_size=self.configs.document.body.font_size,
+                font_name=conf.font
             )
 
             with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as f:

@@ -1,8 +1,8 @@
 import os
 import unittest
 
-from nicebookconfigs import Configs
-from nicebookgenerator import Generator
+from nicebook.configs import Configs
+from nicebook.generator import Generator
 from pdf2image import convert_from_path
 from PIL import Image, ImageChops
 
@@ -37,15 +37,6 @@ class TestPdfGeneration(unittest.TestCase):
             expected_image = Image.open(os.path.join(self.test_files_folder, image_name))
             diff = ImageChops.difference(generated_image, expected_image)
             self.assertFalse(diff.getbbox(), f"PDF page {i} differs from the expected image")
-
-
-
-        # with(Image(filename=o, resolution=120)) as source:
-        #     for i, image in enumerate(source.sequence):
-        #         newfilename = os.path.join(self.tmp_folder, f"page_{i}.jpg")
-        #         Image(image).save(filename=newfilename)
-
-        self.assertEqual('foo'.upper(), 'FOO')
 
 
 if __name__ == '__main__':

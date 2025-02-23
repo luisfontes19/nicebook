@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  nicebook:
+    container_name: nicebook
+    image: nicebook
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - "../:/app"

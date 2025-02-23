@@ -1,0 +1,39 @@
+{
+    "name": "nicebook",
+    "service": "nicebook",
+    "dockerComposeFile": [
+        "docker-compose.yml",
+    ],
+    "workspaceFolder": "/app",
+    "postCreateCommand": "pip install -e . & pip install -r requirements-dev.txt",
+    "forwardPorts": [
+        8787
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.locator": "js",
+                "editor.defaultFormatter": "ms-python.python",
+                "editor.suggestSelection": "first",
+                "editor.tabSize": 4,
+                "editor.formatOnPaste": true,
+                "editor.formatOnSave": true,
+                "editor.inlineSuggest.enabled": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "always"
+                },
+                "editor.multiCursorModifier": "ctrlCmd",
+                "editor.unicodeHighlight.invisibleCharacters": false,
+                "editor.unicodeHighlight.ambiguousCharacters": false
+            },
+            "extensions": [
+                "ms-python.python",
+                "streetsidesoftware.code-spell-checker",
+                "ms-python.vscode-pylance",
+                "ms-python.isort",
+                "luisfontes19.vscode-swissknife",
+                "github.copilot"
+            ]
+        }
+    }
+}
