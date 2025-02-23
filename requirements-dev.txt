@@ -2,3 +2,4 @@ pdf2image
 setuptools
 build
 twine
+bump2version
